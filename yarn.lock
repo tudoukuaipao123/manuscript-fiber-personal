@@ -933,6 +933,14 @@
   resolved "https://registry.npmjs.org/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
+"@babel/runtime-corejs2@^7.21.5":
+  version "7.21.5"
+  resolved "https://registry.npmjs.org/@babel/runtime-corejs2/-/runtime-corejs2-7.21.5.tgz#2442ff0bd74f144b54033a8896d1239a9e338f24"
+  integrity sha512-S2tysuG+DdRT77RwSQjlQWGdPW+91F3JmVLUxo5Lggu3LmTe57NVpagpxu0UW/mzP++UQY0r38I7wnhav8X4fA==
+  dependencies:
+    core-js "^2.6.12"
+    regenerator-runtime "^0.13.11"
+
 "@babel/runtime@^7.21.0", "@babel/runtime@^7.8.4":
   version "7.21.0"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.21.0.tgz#5b55c9d394e5fcf304909a8b00c07dc217b56673"
@@ -1740,6 +1748,11 @@ core-js-compat@^3.25.1:
   integrity sha512-d690npR7MC6P0gq4npTl5n2VQeNAmUrJ90n+MHiKS7W2+xno4o3F5GDEuylSdi6EJ3VssibSGXOa1r3YXD3Mhw==
   dependencies:
     browserslist "^4.21.5"
+
+core-js@^2.6.12:
+  version "2.6.12"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-util-is@~1.0.0:
   version "1.0.3"

@@ -43,6 +43,36 @@ const createElement = function(type, props, ...args) {
   }
 }
 
+function setAttribute(dom, key, value) {
+  if (key === 'nodeValue') {
+    dom.textContent = value;
+  }
+  if ((key === 'style') && typeof value === 'object') {
+    Object.assign(dom.style, value);
+  } else if (key.startsWith('on') && typeof value === 'function') {
+    const event = key.slice(2).toLowerCase();
+    dom.addEventLister(event, value);
+  } else if (typeof value !== 'object' && typeof value !== 'object') {
+    dom.setAttribute(key, value);
+  }
+}
+
+// 根据fiber生成dom
+function createDom(fiber) {
+  let dom = null;
+  if (fiber.type == 'TEXT_ELEMENT'){
+    dom = document.createTextNode('');
+  } else {
+    dom = document.createElement(fiber.type);
+  }
+  const props = fiber.props;
+  for(const prop in props ) {
+    setAttribute(dom, prop, props[prop]);
+  }
+  return dom;
+}
+
 export default {
-  createElement
+  createElement,
+  createDom
 }

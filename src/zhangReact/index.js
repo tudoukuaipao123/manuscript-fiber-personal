@@ -2,11 +2,6 @@ import ReactElement from './ReactElement.js';
 let nextFiberReconcileWork = null; // 下一个需要调度的的fiber节点
 let wipRoot = null; // 渲染时的根fiber节点
 
-// 根据fiber生成dom
-function createDom(fiber) {
-
-}
-
 // 处理fiber和children之间的关系,添加child和sibling的指向
 function reconcileChildren(wipFiber, elements) {
   // 关于链表的处理流程
@@ -42,7 +37,7 @@ function reconcileChildren(wipFiber, elements) {
 function reconcile(fiber) {
   // 1.本fiber节点如果没有dom，则生成dom，挂在当前节点下
   if (!fiber.dom) {
-    fiber.dom = createDom(fiber);
+    fiber.dom = ReactElement.createDom(fiber);
   }
   // 2.处理本fiber的children
   reconcileChildren(fiber, fiber.props.children);
