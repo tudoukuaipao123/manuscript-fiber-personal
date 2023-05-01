@@ -9,7 +9,7 @@ const data = {
 
 const jsxEle = (
   <ul className="list">
-      <li className="item" style={{ background: 'blue', color: 'pink' }} onClick={() => alert(2)}>aa</li>
+      <li className="item" style={{ background: 'blue', color: 'pink', cursor: 'pointer' }} onClick={() => alert(2)}>aa</li>
       <li className="item">{data.item1}<i>xxx</i>yyyy</li>
       <li className="item">{data.item2}</li>
   </ul>

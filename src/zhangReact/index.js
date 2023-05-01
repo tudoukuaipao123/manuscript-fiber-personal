@@ -48,7 +48,6 @@ function performNextWork(fiber) {
   //1.处理当前节点
   reconcile(fiber);
   //2.定位下一个节点
-  console.log('fiber', fiber);
   if (fiber.child) {
     return fiber.child;
   }
@@ -65,6 +64,34 @@ function performNextWork(fiber) {
 
 }
 
+
+// 传入fiber
+function commitWork(fiber) {
+  if (!fiber) return;
+  // 查找fiber的父节点的dom，即为这次插入新dom的入口
+  let parentFiber = fiber.return;
+  // 查找到父节点dom后执行递归插入操作
+  while(!parentFiber.dom) {
+    parentFiber = parentFiber.return;
+  }
+  const domParent = parentFiber.dom;
+  if (
+      fiber.effectTag === "PLACEMENT" &&
+      fiber.dom != null
+  ) {
+      domParent.appendChild(fiber.dom)
+  }
+  commitWork(fiber.child);
+  commitWork(fiber.sibling);
+}
+
+function commitRoot() {
+  if (wipRoot) {
+    commitWork(wipRoot.child);
+    wipRoot = null;
+  }
+}
+
 function wookloop(deadline) {
   let shouldYield = false; //是否允许暂定
   while(nextFiberReconcileWork && !shouldYield) {
@@ -73,12 +100,12 @@ function wookloop(deadline) {
   }
   if (!nextFiberReconcileWork) {
     // 如果没有下一个节点，说明遍历完了，执行下一个操作commit
-  
+    commitRoot();
   }
 
   // 这里 didTimeout 是指是否超时，如果没有执行，算超时，变为true
-  console.log('deadline', deadline,deadline.timeRemaining());
-  // requestIdleCallback(wookloop);
+  // console.log('deadline', deadline,deadline.timeRemaining());
+  requestIdleCallback(wookloop);
 }
 
 requestIdleCallback(wookloop);
