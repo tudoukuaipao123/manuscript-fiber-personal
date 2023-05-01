@@ -51,7 +51,8 @@ function setAttribute(dom, key, value) {
     Object.assign(dom.style, value);
   } else if (key.startsWith('on') && typeof value === 'function') {
     const event = key.slice(2).toLowerCase();
-    dom.addEventLister(event, value);
+    console.log('dom', dom);
+    dom.addEventListener(event, value);
   } else if (typeof value !== 'object' && typeof value !== 'object') {
     dom.setAttribute(key, value);
   }
